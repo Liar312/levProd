@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Controller</title>
+    <script>
+        async function testController() {
+            const response = await fetch('/your-controller-endpoint', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = await response.text();
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</head>
+<body>
+<h1>Test Controller</h1>
+<button onclick="testController()">Test Controller</button>
+<p>Response from Controller:</p>
+<pre id="result"></pre>
+</body>
+</html>
