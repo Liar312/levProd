@@ -1,11 +1,13 @@
 package com.example.testproject.Services;
 
 import com.example.testproject.Models.Player;
+import com.example.testproject.Models.PlayerNameDto;
 import com.example.testproject.Repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -29,5 +31,13 @@ public class PlayerService {
     }
     public List<Player> getAll(){
         return playerRepository.findAll();
+    }
+    public Optional<Player> getByLogin(String login){
+        return playerRepository.findByLogin(login);
+    }
+    public void addPlayerByDTO(PlayerNameDto playerNameDto){
+        Player player = new Player();
+        player.setName(playerNameDto.getName());
+        playerRepository.save(player);
     }
 }
