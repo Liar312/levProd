@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -18,7 +20,12 @@ public class Player {
     private String name;
     @Column(name="email",unique = true)
     private String email;
+    @Column(name="login")
+    private String login;
+    @Column(name="password")
+    private String password;
 
-    @OneToMany(mappedBy = "player",cascade = CascadeType.ALL)
-    private PlayerCard playerCard;
+    @OneToMany(mappedBy = "player",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<PlayerCard> playerCardList;
+
 }
