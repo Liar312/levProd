@@ -3,6 +3,7 @@ package com.example.testproject.Services;
 import com.example.testproject.Models.Player;
 import com.example.testproject.Models.PlayerNameDto;
 import com.example.testproject.Repositories.PlayerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
@@ -39,5 +41,6 @@ public class PlayerService {
         Player player = new Player();
         player.setName(playerNameDto.getName());
         playerRepository.save(player);
+        log.info("Player saved");
     }
 }
