@@ -21,7 +21,7 @@ public class UserRestController {
     }
     @PostMapping("/add/users")
     public void addPlayer(@RequestBody PlayerNameDto playerNameDto){
-               playerService.addPlayerByDTO(playerNameDto);
+               playerService.addPlayerByDTO(playerNameDto);//работает
     }
 
 }
