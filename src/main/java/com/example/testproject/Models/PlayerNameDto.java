@@ -13,4 +13,12 @@ public class PlayerNameDto {
     public String getName() {
         return name;
     }
+
+    public void setFamily(String family){
+        this.family = family;
+    }
+    public String getFamily()
+    {
+        return family;
+    }
 }

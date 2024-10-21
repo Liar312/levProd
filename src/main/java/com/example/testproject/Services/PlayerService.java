@@ -34,7 +34,7 @@ public class PlayerService {
     public List<Player> getAll(){
         return playerRepository.findAll();
     }
-    public Optional<Player> getByLogin(String login){
+    public Player getByLogin(String login){
         return playerRepository.findByLogin(login);
     }
     public void addPlayerByDTO(PlayerNameDto playerNameDto){
@@ -42,5 +42,8 @@ public class PlayerService {
         player.setName(playerNameDto.getName());
         playerRepository.save(player);
         log.info("Player saved");
+    }
+    public Player findPlayerByLogin(String login){
+        return playerRepository.findByLogin(login);
     }
 }
