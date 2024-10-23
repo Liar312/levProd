@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -27,5 +28,9 @@ public class Player {
 
     @OneToMany(mappedBy = "player",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<PlayerCard> playerCardList;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="player_roles",joinColumns = @JoinColumn(name= "player_id"))
+    @Column(name = "role")
+    private Set<Role> role;
 
 }
