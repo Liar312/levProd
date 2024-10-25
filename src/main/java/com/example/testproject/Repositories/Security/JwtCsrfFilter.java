@@ -27,7 +27,7 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         request.setAttribute(HttpServletResponse.class.getName(), response);//свзязываем класс ответов с нашим ответом
-        CsrfToken csrfToken = this.csrfTokenRepository.loadToken(request);//подгружаем токен
+        CsrfToken csrfToken = this.csrfTokenRepository.loadToken(request);
         boolean missingToken = csrfToken == null;//проверка на присутствие токена
         if (missingToken) {
             csrfToken = this.csrfTokenRepository.generateToken(request);
