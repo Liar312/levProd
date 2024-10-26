@@ -35,24 +35,24 @@ import static org.springframework.http.HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS
 public class JWTTokenRepository implements CsrfTokenRepository {
     PlayerService playerService;
 
-    public String userCheck(String login) {
-        if (playerService.findPlayerByLogin(login) != null) {
-            Player player = playerService.findPlayerByLogin(login);
-            String token = Jwts.builder()
-                    .setId(UUID.randomUUID().toString())
-                    .setSubject(player.getName())
-                    .setIssuedAt(new Date())
-                    .setExpiration(Date.from(LocalDateTime.now().plusHours(1)
-                            .atZone(ZoneId.systemDefault()).toInstant()))
-                    .signWith(SignatureAlgorithm.HS256, secret)
-                    .compact();
-
-            return token;//таким образом токен будет обновляться при каждом запросе(если задержка при запросе больше 30 мин то он станет не валидным)
-        } else {
-            throw new UsernameNotFoundException("пользователь не найден");
-
-        }
-    }
+//    public String userCheck(String login) {
+//        if (playerService.findPlayerByLogin(login) != null) {
+//            Player player = playerService.findPlayerByLogin(login);
+//            String token = Jwts.builder()
+//                    .setId(UUID.randomUUID().toString())
+//                    .setSubject(player.getName())
+//                    .setIssuedAt(new Date())
+//                    .setExpiration(Date.from(LocalDateTime.now().plusHours(1)
+//                            .atZone(ZoneId.systemDefault()).toInstant()))
+//                    .signWith(SignatureAlgorithm.HS256, secret)
+//                    .compact();
+//
+//            return token;//таким образом токен будет обновляться при каждом запросе(если задержка при запросе больше 30 мин то он станет не валидным)
+//        } else {
+//            throw new UsernameNotFoundException("пользователь не найден");
+//
+//        }
+//    }
 
     @Getter
     private String secret;//ключ токена
