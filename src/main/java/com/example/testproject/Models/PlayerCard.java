@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,10 +15,15 @@ import java.util.Set;
 public class PlayerCard {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long card_id;
+    @Column(name = "characterName")
     private String characterName;
+    @Column(name ="characterClass")
     private String characterClass;
+    @Column(name= "race")
     private String race;
+    @Column(name="background")
     private String background;
     @ElementCollection
     private Set<String> skills = new HashSet<>();

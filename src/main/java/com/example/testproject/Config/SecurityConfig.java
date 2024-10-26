@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CsrfFilter;
@@ -21,19 +21,22 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    private PlayerService service;
+
+    private final PlayerService service;
+    private final JWTTokenRepository jwtTokenRepository;
+    private final HandlerExceptionResolver resolver;
 
     @Autowired
-    private JWTTokenRepository jwtTokenRepository;
-
-    @Autowired
-    @Qualifier("handlerExceptionResolver")
-    private HandlerExceptionResolver resolver;
+    public SecurityConfig(PlayerService service, JWTTokenRepository jwtTokenRepository,
+                          @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
+        this.service = service;
+        this.jwtTokenRepository = jwtTokenRepository;
+        this.resolver = resolver;
+    }
 
     @Bean
     public PasswordEncoder devPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder(10);
     }
 
     @Bean
@@ -42,13 +45,14 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 )
-                .addFilterAt(new JwtCsrfFilter(jwtTokenRepository, resolver), CsrfFilter.class)//укзываем что наш фильтр будет выполняться перед стандартныи csrf фильтром
+                .addFilterAt(new JwtCsrfFilter(jwtTokenRepository, resolver), CsrfFilter.class)
                 .csrf(csrf ->
-                        csrf.ignoringRequestMatchers("/**")//игнорируем обработку стандртного фильтра
+                        csrf.ignoringRequestMatchers("/auth/login")
                 )
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers("/auth/login").authenticated()
+                                .anyRequest().permitAll()
                 )
                 .httpBasic(httpBasic ->
                         httpBasic.authenticationEntryPoint((request, response, e) ->
@@ -63,8 +67,8 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(service);
+        authenticationManagerBuilder.userDetailsService(service)
+                .passwordEncoder(devPasswordEncoder());
         return authenticationManagerBuilder.build();
     }
 }
-
