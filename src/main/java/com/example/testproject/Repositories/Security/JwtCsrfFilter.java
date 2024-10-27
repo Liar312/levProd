@@ -35,6 +35,12 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
         }
         request.setAttribute(CsrfToken.class.getName(), csrfToken);//тут смысл в том чтобы установить токен как параметр запроса чтобы обращаться к нему
         request.setAttribute(csrfToken.getParameterName(), csrfToken);
+
+        String servletPath = request.getServletPath();
+        if(servletPath.equals("/players") || servletPath.equals("/add/users")||servletPath.startsWith("/delete/")){
+            filterChain.doFilter(request,response);
+            return;
+        }
         if (request.getServletPath().equals("/auth/login")) {
             try {
                 filterChain.doFilter(request, response);//продолжаем прогон по фильтрам, в конце передаем на контроллер

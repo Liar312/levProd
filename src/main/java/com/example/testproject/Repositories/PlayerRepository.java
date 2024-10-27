@@ -12,5 +12,6 @@ public interface PlayerRepository extends JpaRepository<Player,Long> {
     Optional<Player> findPlayerByEmail(String email);
 
     Player findByLogin(String login);
+    Player deletePlayerByLogin(String login);
 
 }

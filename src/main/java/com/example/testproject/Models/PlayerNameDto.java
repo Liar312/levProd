@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 
 public class PlayerNameDto {
     private String name;
-    private String family;
+    private String login;
+    private String password;
 
     public void setName(String name){
         this.name = name;
@@ -14,11 +15,19 @@ public class PlayerNameDto {
         return name;
     }
 
-    public void setFamily(String family){
-        this.family = family;
+    public void setLogin(String login){
+        this.login = login;
     }
-    public String getFamily()
+    public String getLogin()
     {
-        return family;
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

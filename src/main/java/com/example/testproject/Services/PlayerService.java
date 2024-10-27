@@ -10,7 +10,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +27,9 @@ import static org.hibernate.internal.util.collections.CollectionHelper.map;
 public class PlayerService implements UserDetailsService {
     @Autowired
     private PlayerRepository playerRepository;
+@Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public void SavePlayer(Player player) {
         playerRepository.save(player);
@@ -53,8 +58,15 @@ public class PlayerService implements UserDetailsService {
     public void addPlayerByDTO(PlayerNameDto playerNameDto) {
         Player player = new Player();
         player.setName(playerNameDto.getName());
+        String encodedPassword = passwordEncoder.encode(playerNameDto.getPassword());
+        player.setPassword(encodedPassword);
+        player.setLogin(playerNameDto.getLogin());
         playerRepository.save(player);
         log.info("Player saved");
+    }
+@Transactional
+    public void deletePlayerById(Long id){
+        playerRepository.deleteById(id);
     }
 
     public Player findPlayerByLogin(String login) {

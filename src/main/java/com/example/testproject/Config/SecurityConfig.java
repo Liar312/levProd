@@ -34,25 +34,23 @@ public class SecurityConfig {
         this.resolver = resolver;
     }
 
-    @Bean
-    public PasswordEncoder devPasswordEncoder() {
-        return new BCryptPasswordEncoder(10);
-    }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers("/add/users", "/players","/delete/**").permitAll() // Разрешаем доступ без аутентификации
+                                .requestMatchers("/auth/login").authenticated()       // Требуем аутентификацию для /auth/login
+                                .anyRequest().permitAll()                             // Разрешаем все остальные запросы
+                )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 )
                 .addFilterAt(new JwtCsrfFilter(jwtTokenRepository, resolver), CsrfFilter.class)
                 .csrf(csrf ->
-                        csrf.ignoringRequestMatchers("/auth/login")
-                )
-                .authorizeHttpRequests(authorize ->
-                        authorize
-                                .requestMatchers("/auth/login").authenticated()
-                                .anyRequest().permitAll()
+                        csrf.ignoringRequestMatchers("/auth/login","/add/users","/delete/**")
                 )
                 .httpBasic(httpBasic ->
                         httpBasic.authenticationEntryPoint((request, response, e) ->
@@ -63,12 +61,12 @@ public class SecurityConfig {
         return http.build();
     }
 
+
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(service)
-                .passwordEncoder(devPasswordEncoder());
+        authenticationManagerBuilder.userDetailsService(service);
         return authenticationManagerBuilder.build();
     }
 }
