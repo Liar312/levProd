@@ -1,5 +1,6 @@
-package com.example.testproject.Repositories.Security;
+package com.example.testproject.Config;
 
+import com.example.testproject.Repositories.Security.JWTTokenRepository;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
@@ -37,7 +38,7 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
         request.setAttribute(csrfToken.getParameterName(), csrfToken);
 
         String servletPath = request.getServletPath();
-        if(servletPath.equals("/players") || servletPath.equals("/add/users")||servletPath.startsWith("/delete/")){
+        if(servletPath.equals("/players") || servletPath.equals("/add/users")||servletPath.startsWith("/delete/")||servletPath.equals("/auth/reg")){
             filterChain.doFilter(request,response);
             return;
         }
