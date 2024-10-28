@@ -1,0 +1,77 @@
+body {
+    font-family: Bainsley, Arial, sans-serif;
+    margin: 1%; /* Отступы вокруг страницы */
+    padding: 0;
+    background-color: #000000;
+    color: antiquewhite;
+    /*background-image: url('img/pergament.jpeg');*/
+    background-repeat: none;
+    background-size: cover;
+}
+
+.skills_checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3px;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    display: flex; /* Flexbox для выравнивания */
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+.custom-checkbox.empty {
+    background-color: transparent;
+    color: #fff;
+    user-select: none;
+} 
+
+.custom-checkbox.filled {
+    color: #fff;
+    user-select: none;
+}
+
+.custom-checkbox.filled-bordered {
+    color: #fff;
+    background-color: transparent;
+    user-select: none;
+}
+
+.perc {
+    font-family: Bainsley;
+}
+.perc_value {
+    font-family: Beaumarchais;
+    margin-top: 4px;
+    font-size: 50px;
+    text-align: center;
+    width: 76px;
+}
+.perc-textarea { 
+    height: 22px;
+    width: 50%;
+    font-size: 22px; 
+    text-align: center;
+    bottom: 5px;
+    left: 0px;
+    white-space: nowrap;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+.perc_input {
+    outline:none;
+}
+.skill_name {
+    margin-left: 4px;
+    font-size: 14px;
+}

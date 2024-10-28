@@ -1,0 +1,317 @@
+@font-face {
+    font-family: Bainsley;  
+    src: url("../fonts/Bainsley_Roman.otf"); 
+    font-weight: normal;
+}
+@font-face {
+    font-family: Beaumarchais;  
+    src: url("../fonts/BeaumarchaisC.ttf"); 
+    font-weight: normal;
+}
+@font-face {
+    font-family: Neverwinter;  
+    src: url("../fonts/rus-neverwinter.otf"); 
+    font-weight: normal;
+}
+
+h5 {
+    margin: 0;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+body {
+    font-family: Bainsley, Arial, sans-serif;
+    margin: 1%; /* Отступы вокруг страницы */
+    padding: 0;
+    background-color: #000000;
+    color: antiquewhite;
+    /*background-image: url('img/pergament.jpeg');*/
+    background-repeat: none;
+    background-size: cover;
+}
+.page {
+    width: 1480px;
+    height: 1050px;
+    margin: 0 auto;
+    display: flex;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    transition: background-color 0.5s ease;
+}
+
+.perc_value {
+    font-family: Beaumarchais;
+    margin-top: 4px;
+    font-size: 50px;
+    text-align: center;
+    width: 76px;
+}
+.container {
+    /*text-align: center;*/
+    width: max-content;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.block {
+    border: 2px solid #FFFFF0; /* Белая рамка */
+    border-radius: 12px; /* Закругленные углы */
+    background-color: transparent; /* Прозрачный фон */
+    margin: 5px; /* Отступы между блоками */
+}
+.block-1 {
+    height: 90px;
+    display: flex;
+    padding-bottom: 4px;
+    flex-direction: column; /* Вертикальное расположение полей */
+    justify-content: center; /* Центрирование по вертикали */
+    color: #FFFFF0;
+}
+.block-2 {
+    height: 670px;
+    border: none; /* Убираем рамку */
+}
+.block-3 {
+    border: none;
+    position: relative;
+    display: flex;
+    height: 230px;
+    width: 720px;
+    left: -5px;
+}
+
+.input-field {
+    font-family: Beaumarchais;
+    height: 40px; /* Высота полей */
+    width: calc(50% - 10px); /* На всю ширину минус 10 пикселей (по 50% для двух полей) */
+    border: none; /* Убираем рамку */
+    border-bottom: 1px solid #FFFFF0; /* Нижняя граница белого цвета */
+    margin: 5px; /* Отступы между полями */
+    padding: 5px; /* Отступ внутри полей */
+    box-sizing: border-box; /* Учитывать границы в ширине */
+    background-color: transparent; /* Полностью прозрачный фон */
+    color: #fff0da; /* Цвет текста */
+    font-size: 30px; /* Размер шрифта 20 пикселей */
+    outline: none; /* Убираем синюю окантовку */
+}
+.input-field::placeholder {
+    color: #fffff0bd;
+    font-size: 25px;
+}
+
+.textarea {
+    font-family: Bainsley;
+    font-size: 14px;
+    width: 100%; /* Занимает всю ширину блока */
+    border: none; /* Убираем рамку */
+    resize: none; /* Отключаем возможность изменения размера пользователем */
+    outline: none; /* Убираем синюю окантовку */
+    overflow: hidden; /* Скрываем прокрутку */
+    color: #fff0da; /* Цвет текста темно-серый */
+    background-color: transparent; /* Прозрачный фон */
+    box-sizing: border-box; /* Учитывать отступы в ширине */
+}
+.dynamic-textarea {
+    height: 100%; /* Начальная высота 100% */
+    padding: 5px; /* Отступ внутри поля */
+    /*font-size: 20px; /* Размер шрифта 20 пикселей */
+    border: 2px solid #FFFFF0;
+    border-radius: 12px;
+    padding-bottom: 20px;
+}
+.dynamic-textarea:focus {
+    /* Подсветка при фокусе */
+}
+.perc-textarea {
+    height: 22px;
+    width: 50%;
+    font-size: 22px; 
+    text-align: center;
+    bottom: 5px;
+    left: 0px;
+    white-space: nowrap;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+.ref-textarea {
+    height: 56px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid #FFFFF0;
+    border-radius: 12px;
+}
+
+.wrapper {
+    position: relative; 
+    width: 10px;
+    margin-top: 3px;
+}
+.input-wrapper {
+    position: relative; 
+    padding-bottom: 5px;
+}
+
+.label {
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 15px; /* Расстояние от нижней границы textarea */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+    font-size: 16px; /* Размер шрифта для подписи */
+    color: #FFFFF0; /* Цвет текста для подписи */
+    transition: transform 0.3s ease, font-size 0.3s ease; /* Плавный переход */
+}
+
+/*.perc {
+    font-family: Bainsley;
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    height: 76px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 3px;
+    padding-bottom: 0px;
+    border: 2px solid #FFFFF0;
+    border-radius: 100px;
+}*/
+
+.perc_input {
+    outline:none;
+}
+.perc_input::placeholder {
+    color: #FFFFF0;
+}
+
+
+.ref {
+    font-family: Bainsley;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    bottom: 5px
+ }
+
+.hidden {
+    display: none;
+}
+
+ #colorButton {
+    font-family: Neverwinter;
+    font-size: 62px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding-bottom: -50px;
+}
+
+#colorMenu {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background-color: rgb(34, 34, 34);
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+#colorMenu ul {
+    list-style-type: none;
+    padding: 2px 2x 2px 5px;
+    padding-inline-start: 10px;
+}
+#colorMenu li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#colorMenu li:hover {
+    background-color: #3b3b3b;
+}
+
+#colorInputContainer {
+    top: 100px;
+    right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background-color: rgb(34, 34, 34);
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#hexColorInput {
+    width: 100px;
+    padding: 2px 2x 2px 5px;
+    padding-inline-start: 10px;
+}
+
+#applyColor {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+::placeholder {
+    color: #b3b3a8;
+    font-size: 14px;
+}
+
+
+.custom-checkbox {
+    width: 20px;
+    height: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    display: flex; /* Flexbox для выравнивания */
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+.custom-checkbox.empty {
+    background-color: transparent;
+    color: #fff;
+    user-select: none;
+}
+
+.skills_list {
+    width: 33%; 
+    height: 100px; 
+    display: flex; 
+    flex-direction: column-reverse;
+}
+
+.skills_checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3px;
+}
+
+.skill_name {
+    margin-left: 4px;
+    font-size: 14px;
+}
+
+.boosted1 {
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.boosted2 {
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+
+
