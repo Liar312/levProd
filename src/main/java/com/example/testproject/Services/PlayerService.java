@@ -1,7 +1,9 @@
 package com.example.testproject.Services;
 
 import com.example.testproject.Models.Player;
+import com.example.testproject.Models.PlayerCard;
 import com.example.testproject.Models.PlayerNameDto;
+import com.example.testproject.Repositories.PlayerCardRepository;
 import com.example.testproject.Repositories.PlayerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.hibernate.internal.util.collections.CollectionHelper.map;
@@ -29,6 +28,8 @@ public class PlayerService implements UserDetailsService {
     private PlayerRepository playerRepository;
 @Autowired
     private PasswordEncoder passwordEncoder;
+@Autowired
+private PlayerCardRepository playerCardRepository;
 
 
     public void SavePlayer(Player player) {
@@ -55,16 +56,42 @@ public class PlayerService implements UserDetailsService {
         return playerRepository.findByLogin(login);
     }
 
+    // Метод для создания стартовой карточки
+    private PlayerCard createStartingCard(Player player) {
+        PlayerCard startingCard = new PlayerCard();
+        startingCard.setCharacterName("Default Character");
+        startingCard.setCharacterClass("Warrior");
+        startingCard.setRace("Human");
+        startingCard.setBackground("Newcomer");
+        startingCard.setPlayer(player);
+        return startingCard;
+    }
+
+    // Основной метод для добавления игрока
     public void addPlayerByDTO(PlayerNameDto playerNameDto) {
+        // Создание нового игрока
         Player player = new Player();
         player.setName(playerNameDto.getName());
         String encodedPassword = passwordEncoder.encode(playerNameDto.getPassword());
         player.setPassword(encodedPassword);
         player.setLogin(playerNameDto.getLogin());
+
+        // Создание стартовой карточки
+        PlayerCard startingCard = createStartingCard(player);
+
+        // Добавляем карточку в список карточек игрока
+        List<PlayerCard> cardList = new ArrayList<>();
+        cardList.add(startingCard);
+        player.setPlayerCardList(cardList);
+
+        // Сохранение игрока вместе с карточкой
         playerRepository.save(player);
-        log.info("Player saved");
+
+        log.info("Player and starting PlayerCard saved");
     }
-@Transactional
+
+
+    @Transactional
     public void deletePlayerById(Long id){
         playerRepository.deleteById(id);
     }

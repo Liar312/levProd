@@ -1,5 +1,7 @@
 package com.example.testproject.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,5 +31,7 @@ public class PlayerCard {
     private Set<String> skills = new HashSet<>();
     @ManyToOne
     @JoinColumn(name="player_id")
+    @JsonIgnoreProperties("playerCardList")
+    @JsonIgnore
     private Player player;
 }

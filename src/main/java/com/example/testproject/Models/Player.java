@@ -1,5 +1,6 @@
 package com.example.testproject.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,8 @@ public class Player {
 
     @OneToMany(mappedBy = "player",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<PlayerCard> playerCardList;
+
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="player_roles",joinColumns = @JoinColumn(name= "player_id"))
     @Column(name = "role")
