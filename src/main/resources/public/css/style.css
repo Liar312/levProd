@@ -11,17 +11,17 @@ h3 {
 /* блок импорта шрифтов */
 @font-face {
     font-family: Bainsley;  
-    src: url("../fonts/Bainsley_Roman.otf"); 
+    src: url("../fonts/Bainsley_Roman.otf");
     font-weight: normal;
 }
 @font-face {
     font-family: Beaumarchais;  
-    src: url("../fonts/BeaumarchaisC.ttf"); 
+    src: url("../fonts/BeaumarchaisC.ttf");
     font-weight: normal;
 }
 @font-face {
     font-family: Neverwinter;  
-    src: url("../fonts/rus-neverwinter.otf"); 
+    src: url("../fonts/rus-neverwinter.otf");
     font-weight: normal;
 }
 

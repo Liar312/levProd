@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="keywords" content="test, site, website" />
-    <meta name="description" content="Сайт про историю одного королевства" />
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="img/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="keywords" content="test, site, website">
+    <meta name="description" content="Сайт про историю одного королевства">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/img/favicon_dnd.png" rel="shortcut icon" type="image/x-icon">
     <title>Регистрация</title>
 </head>
 <body>
-<div class="wrapper wrapper--">
-    <header class="header"><a href="index.html" title="На главную" id="logo">Подземелья Верстедфорта</a><span class="contact"></span></header>
+<div class="wrapper">
+    <header class="header">
+        <a href="/" title="На главную" id="logo">Подземелья Верстедфорта</a>
+    </header>
     <main class="main">
-        <div class="wrapper wrapper-main">
-            <div class="text-field__label">
-                <p class="text">Уже есть аккаунт? <a class="underline" href="login.html">Войти</a>.</p>
-            </div>
-            <div id="registrationForm" class="reg">
-                <label class="text-field__label" for="name"><b>Никнейм</b></label>
-                <input class="text-field__input" id="name" name="name" type="text" placeholder="Как к вам обращаться?" required>
-                <label class="text-field__label" for="login"><b>Почта</b></label>
-                <input class="text-field__input" id="login" name="email" type="text" placeholder="Ваш почтовый адрес" required>
-                <label class="text-field__label" for="password"><b>Пароль</b></label>
-                <input class="text-field__input" id="password" name="password" type="password" placeholder="Пароль для входа" required>
-            </div>
-            <p class="text">Создавая аккаунт вы соглашаетесь с нашими <a class="underline" href="#">Правилами</a>.</p>
-
-            <div id="submit" class="btn btn-one">
-                <span>Зарегистрироваться</span>
-            </div>
+        <div class="wrapper-main">
+            <p class="text">Уже есть аккаунт? <a class="underline" href="/login">Войти</a>.</p>
+            <form id="registrationForm" class="reg"> <!-- Изменено с div на form -->
+                <label for="name"><b>Никнейм</b></label>
+                <input id="name" name="name" type="text" placeholder="Как к вам обращаться?" required>
+                <label for="login"><b>Почта</b></label>
+                <input id="login" name="email" type="text" placeholder="Ваш почтовый адрес" required>
+                <label for="password"><b>Пароль</b></label>
+                <input id="password" name="password" type="password" placeholder="Пароль для входа" required>
+                <button id="submit" type="submit">Зарегистрироваться</button>
+            </form>
         </div>
     </main>
-    <footer class="footer"><span class="left">© Lion Bones Entertainment, 2023</span><a href="https://t.me/Brlesha" target="_blank" class="right button"><img src="img/tg_icon.png" alt="Ссылка на телеграм" title="Ссылка на телеграм" class="tg_icon"/> <h3> Поддержка </h3> </a></footer>
+    <footer class="footer">
+        <span>© Lion Bones Entertainment, 2023</span>
+        <a href="https://t.me/Brlesha" target="_blank">
+            <img src="/img/tg_icon.png" alt="Ссылка на телеграм" title="Ссылка на телеграм">
+            Поддержка
+        </a>
+    </footer>
 </div>
+<script src="/js/reg_log.js"></script> <!-- Подключение JS-файла -->
 </body>
-<script src="scripts/reg_log.js"></script>
 </html>

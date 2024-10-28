@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FormController {
     @GetMapping("/reg")
     public String showRegistrationForm(){
-        return "registration";
+        return "reg";
     }
 
 

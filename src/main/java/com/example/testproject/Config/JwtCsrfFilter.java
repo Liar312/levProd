@@ -38,7 +38,8 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
         request.setAttribute(csrfToken.getParameterName(), csrfToken);
 
         String servletPath = request.getServletPath();
-        if(servletPath.equals("/players") || servletPath.equals("/add/users")||servletPath.startsWith("/delete/")||servletPath.equals("/auth/reg")){
+        if(servletPath.equals("/players") || servletPath.equals("/add/users")||servletPath.startsWith("/delete/")||servletPath.equals("/auth/reg")
+         || servletPath.startsWith("/css/")||servletPath.startsWith("/js/")||servletPath.startsWith("/img/")||servletPath.startsWith("/templates/")||servletPath.startsWith("/auth/img")||servletPath.startsWith("/fonts/")){
             filterChain.doFilter(request,response);
             return;
         }
