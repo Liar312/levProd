@@ -14,20 +14,18 @@
         <a href="/" title="На главную" id="logo">Подземелья Верстедфорта</a>
     </header>
     <main class="main">
-        <div class="wrapper-main">
+        <div class="wrapper wrapper-main">
             <p class="text">Уже есть аккаунт? <a class="underline" href="/login">Войти</a>.</p>
             <form id="registrationForm" class="reg"> <!-- Изменено с div на form -->
-                <label for="name"><b>Никнейм</b></label>
-                <input id="name" name="name" type="text" placeholder="Как к вам обращаться?" required>
-                <label for="login"><b>Почта</b></label>
-                <input id="login" name="email" type="text" placeholder="Ваш почтовый адрес" required>
-                <label for="password"><b>Пароль</b></label>
-                <input id="password" name="password" type="password" placeholder="Пароль для входа" required>
-                <button id="submit" type="submit" class="btn btn-one">
-                Зарегистрироваться
-                </button>
+                <label class="text-field__label" for="name"><b>Никнейм</b></label>
+                <input class="text-field__input" id="name" name="name" type="text" placeholder="Как к вам обращаться?" required>
+                <label class="text-field__label" for="login"><b>Почта</b></label>
+                <input class="text-field__input" id="login" name="email" type="text" placeholder="Ваш почтовый адрес" required>
+                <label class="text-field__label" for="password"><b>Пароль</b></label>
+                <input class="text-field__input" id="password" name="password" type="password" placeholder="Пароль для входа" required>
+                <button id="submit" type="submit" class="btn btn-one">Зарегистрироваться</button>
             </form>
-            
+            <p class="text">Создавая аккаунт вы соглашаетесь с нашими <a class="underline" href="#">Правилами</a>.</p>
         </div>
     </main>
     <footer class="footer"><span class="left">© Lion Bones Entertainment, 2023</span><a href="https://t.me/Brlesha" target="_blank" class="right button"><img src="img/tg_icon.png" alt="Ссылка на телеграм" title="Ссылка на телеграм" class="tg_icon"/> <h3> Поддержка </h3> </a></footer>
