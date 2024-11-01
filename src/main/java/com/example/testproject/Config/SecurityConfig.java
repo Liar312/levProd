@@ -47,7 +47,7 @@ public class SecurityConfig {
                 )
                 .addFilterAt(new JwtCsrfFilter(jwtTokenRepository, resolver), CsrfFilter.class)
                 .csrf(csrf ->
-                        csrf.ignoringRequestMatchers("/auth/login","/add/users","/delete/**")
+                        csrf.ignoringRequestMatchers("/auth/login","/add/users","/delete/**","/redis/add/user")
                 )
                 .httpBasic(httpBasic ->
                         httpBasic.authenticationEntryPoint((request, response, e) ->

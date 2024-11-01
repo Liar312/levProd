@@ -43,7 +43,7 @@ public class JwtCsrfFilter extends OncePerRequestFilter {
 //            filterChain.doFilter(request,response);
 //            return;
 //        }
-        if(!servletPath.equals("auth/login")){
+        if(!servletPath.equals("/auth/login")){
             filterChain.doFilter(request,response);
             return;
         }
