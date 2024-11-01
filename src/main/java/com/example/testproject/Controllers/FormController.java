@@ -12,5 +12,10 @@ public class FormController {
         return "reg";
     }
 
+    @GetMapping("/create/char")
+    public String showCharCreateForm(){
+        return "charCreate";
+    }
+
 
 }
