@@ -22,21 +22,13 @@ public class AuthController {
 
     @PostMapping(path = "/login",produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Player getAuthPlayer(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();//содержит информацию о текущей аутентификации
-        if(authentication == null){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();//содержит информацию о текущей аутентификации
+        if(auth == null){
             return null;
         }
-        Object principal = authentication.getPrincipal();//натягиваем текущуя аутентификацию на авторизированного пользователя
-        Player player;
-        if(principal instanceof Player){//если авторизованный пользователь является экземпляром класса юзер кидаем его к этому типу
-            player = (Player) principal;
-        } else{
-            player = null;
-        }
-        if (Objects.nonNull(player)){
-            return playerService.findPlayerByLogin(player.getLogin());
-        } else {
-            return null;
+        Object principal = auth.getPrincipal();
+        Player player = (principal instanceof Player) ? (Player) principal : null;
+        return Objects.nonNull(player) ? this.playerService.getByLogin(player.getLogin()) : null;
         }
     }
-}
+

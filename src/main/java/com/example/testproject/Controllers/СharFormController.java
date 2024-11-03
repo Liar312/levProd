@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class СharFormController {
-    @GetMapping("/create/char")
+    @GetMapping("/create/card")
     public String showCreateCharForm(){
         return "card";
     }
