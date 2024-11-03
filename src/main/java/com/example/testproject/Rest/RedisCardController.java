@@ -38,7 +38,7 @@ public class RedisCardController {
             playerCardRepository.save(playerCard);// в бд
             redisCardRepository.add(playerCard);//в редис
             return ResponseEntity.ok("Player card with key(character name),value(character class),and race successfully created");
-        }
+        }//
     @RequestMapping("/values")
     public @ResponseBody Map<String, String> findAll() {
 
