@@ -29,10 +29,24 @@ public class PlayerCard implements Serializable {
     @Column(name="background")
     private String background;
     @ElementCollection
+
     private Set<String> skills = new HashSet<>();
     @ManyToOne
     @JoinColumn(name="player_id")
     @JsonIgnoreProperties("playerCardList")
     @JsonIgnore
     private Player player;
+
+    @Override
+    public String toString() {
+        return "PlayerCard{" +
+                "card_id=" + card_id +
+                ", characterName='" + characterName + '\'' +
+                ", characterClass='" + characterClass + '\'' +
+                ", race='" + race + '\'' +
+                ", background='" + background + '\'' +
+                // Не включаем skills, чтобы избежать LazyInitializationException
+                '}';
+    }
+
 }

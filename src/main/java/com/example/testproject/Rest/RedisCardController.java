@@ -6,9 +6,11 @@ import com.example.testproject.Models.PlayerCardDTO;
 import com.example.testproject.Redis.RedisCardRepository;
 import com.example.testproject.Repositories.PlayerCardRepository;
 import com.example.testproject.Services.PlayerService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -37,8 +39,10 @@ public class RedisCardController {
             playerCard.setPlayer(player);
             playerCardRepository.save(playerCard);// в бд
             redisCardRepository.add(playerCard);//в редис
+            Hibernate.initialize(playerCard.getSkills());
             return ResponseEntity.ok("Player card with key(character name),value(character class),and race successfully created");
         }//
+    @Transactional
     @RequestMapping("/values")
     public @ResponseBody Map<String, String> findAll() {
 
