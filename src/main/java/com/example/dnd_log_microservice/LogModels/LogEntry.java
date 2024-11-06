@@ -1,10 +1,10 @@
-package org.example.Models;
+package com.example.dnd_log_microservice.LogModels;
 
 
+import jakarta.persistence.*;
 import lombok.*;
 
 
-import javax.persistence.*;
 
 
 @Entity
