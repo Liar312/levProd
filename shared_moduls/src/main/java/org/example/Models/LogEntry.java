@@ -1,8 +1,10 @@
-package com.example.dnd_log_microservice.LogModels;
+package org.example.Models;
 
-import jakarta.persistence.*;
+
 import lombok.*;
-import org.springframework.aot.generate.GeneratedMethod;
+
+
+import javax.persistence.*;
 
 
 @Entity
@@ -13,7 +15,7 @@ import org.springframework.aot.generate.GeneratedMethod;
 @Setter
 public class LogEntry {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String log_id;
     private String timestamp;
     private String level;

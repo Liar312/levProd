@@ -1,7 +1,9 @@
 package com.example.dnd_log_microservice.Controllers;
 
-import com.example.dnd_log_microservice.LogModels.LogEntry;
+
 import com.example.dnd_log_microservice.Services.LogService;
+import org.example.Models.LogEntry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/logs")
 
 public class LogController {
+    @Autowired
     private LogService logService;
 
     public LogController(LogService logService) {

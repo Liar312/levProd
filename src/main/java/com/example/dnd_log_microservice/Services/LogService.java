@@ -1,7 +1,8 @@
 package com.example.dnd_log_microservice.Services;
 
-import com.example.dnd_log_microservice.LogModels.LogEntry;
+
 import com.example.dnd_log_microservice.LogRepository.LogRepository;
+import org.example.Models.LogEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
