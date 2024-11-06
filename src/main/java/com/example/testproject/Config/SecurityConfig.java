@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/add/users", "/players","/delete/**").permitAll() // Разрешаем доступ без аутентификации
-                                .requestMatchers("/auth/login").authenticated()       // Требуем аутентификацию для /auth/login
+                                .requestMatchers("/auth/login","/redis/add/card").authenticated()       // Требуем аутентификацию для /auth/login
                                 .anyRequest().permitAll()                             // Разрешаем все остальные запросы
                 )
                 .sessionManagement(session ->

@@ -27,6 +27,9 @@ public class RedisCardController {
       private PlayerService playerService;
         @RequestMapping(value = "/redis/add/card",method = RequestMethod.POST)
         public ResponseEntity<String> add(@RequestBody PlayerCardDTO playerCardDTO,Principal principal){
+            if(principal == null){
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Пользователь не найден");
+            }
             Player player = playerService.findPlayerByLogin(principal.getName());
             if(player == null){
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
