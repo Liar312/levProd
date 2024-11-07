@@ -147,3 +147,65 @@ document.addEventListener("click", function(event) {
         updatePercOutput(checkbox.closest('.skills_checkbox').parentElement.querySelector('.globalInput'));
     }
 });
+
+//сохранение карты 
+
+// Функция для получения данных из всех полей
+function collectFormData() {
+    const data = {
+        char_name: document.getElementById('char_name').value,
+        char_hist: document.getElementById('char_hist').value,
+        char_class: document.getElementById('char_class').value,
+        char_race: document.getElementById('char_race').value,
+        
+        // Заполнение textarea полей
+        languages: document.querySelector("textarea[placeholder='Языки и прочие владения.']").value,
+        equipment: document.querySelector("textarea[placeholder='Что у вас есть?']").value,
+        
+        // Получение значений из input полей с атрибутами placeholder
+        dc: document.querySelector("input[placeholder='0']").value,
+        speed: Array.from(document.querySelectorAll("input[placeholder='0']")).map(el => el.value),
+        
+        // Заполнение значений из полей "Сила", "Ловкость", и других характеристик
+        attributes: {
+            strength: document.querySelector("input[placeholder='10']").value,
+            dexterity: document.querySelectorAll("input[placeholder='10']")[1].value, // Выбор второго поля для ловкости
+            constitution: document.querySelectorAll("input[placeholder='10']")[2].value,
+            intelligence: document.querySelectorAll("input[placeholder='10']")[3].value,
+            wisdom: document.querySelectorAll("input[placeholder='10']")[4].value,
+            charisma: document.querySelectorAll("input[placeholder='10']")[5].value
+        }
+    };
+    return data; // возвращаю всю карту в дата
+}
+
+// Пример использования функции
+document.addEventListener('DOMContentLoaded', function() {
+    const submitButton = document.getElementById('savePngButton'); // Кнопка "Сохранить карту"
+    
+    submitButton.addEventListener('click', function() {
+        const formData = collectFormData();
+        console.log("Данные персонажа:", formData);
+        
+        // Здесь вы можете добавить код для отправки formData на сервер
+        sendFormDataToServer(formData);
+    });
+});
+
+// Функция для отправки данных на сервер
+function sendFormDataToServer(data) {
+    fetch('https://example.com/your-endpoint', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Ответ сервера:', result);
+    })
+    .catch(error => {
+        console.error('Ошибка при отправке данных:', error);
+    });
+}
