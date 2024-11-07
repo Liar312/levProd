@@ -59,10 +59,10 @@ private PlayerCardRepository playerCardRepository;
     // Метод для создания стартовой карточки
     private PlayerCard createStartingCard(Player player) {
         PlayerCard startingCard = new PlayerCard();
-        startingCard.setCharacterName("Default Character");
-        startingCard.setCharacterClass("Warrior");
-        startingCard.setRace("Human");
-        startingCard.setBackground("Newcomer");
+        startingCard.setCharacterName("example for empty card");
+        startingCard.setCharacterClass("example for empty card");
+        startingCard.setRace("example for empty card");
+        startingCard.setBackground("example for empty card");
         startingCard.setPlayer(player);
         return startingCard;
     }

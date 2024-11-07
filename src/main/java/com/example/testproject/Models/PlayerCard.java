@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,10 +15,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PlayerCard {
+public class PlayerCard implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private Long card_id;
     @Column(name = "characterName")
     private String characterName;
@@ -28,10 +29,24 @@ public class PlayerCard {
     @Column(name="background")
     private String background;
     @ElementCollection
+
     private Set<String> skills = new HashSet<>();
     @ManyToOne
     @JoinColumn(name="player_id")
     @JsonIgnoreProperties("playerCardList")
     @JsonIgnore
     private Player player;
+
+    @Override
+    public String toString() {
+        return "PlayerCard{" +
+                "card_id=" + card_id +
+                ", characterName='" + characterName + '\'' +
+                ", characterClass='" + characterClass + '\'' +
+                ", race='" + race + '\'' +
+                ", background='" + background + '\'' +
+                // Не включаем skills, чтобы избежать LazyInitializationException
+                '}';
+    }
+
 }

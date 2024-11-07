@@ -1,28 +1,26 @@
 document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Предотвращаем стандартное поведение формы
 
-    const name = document.getElementById('name').value.trim();
-    const login = document.getElementById('login').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const name = document.getElementById('name').value;
+    const login = document.getElementById('login').value;
+    const password = document.getElementById('password').value;
 
-    const userData = { name, login, password };
+    const userData = {
+        name: name,
+        login: login,
+        password: password
+    };
 
     try {
-        const response = await fetch('/add/users', {
+        await fetch('/add/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            console.log('Успешно зарегистрировано:', data);
-            window.location.href = '/login'; // Перенаправление на логин
-        } else {
-            throw new Error('Ошибка при регистрации');
-        }
+        // Перенаправляем на другую форму независимо от результата POST запроса
+        window.location.href = '/create/char'; // Отправка GET-запроса на URL, который возвращает HTML
     } catch (error) {
         console.error('Ошибка:', error);
-        alert('Ошибка при регистрации');
     }
 });

@@ -40,6 +40,10 @@ public class UserRestController {
         playerService.deletePlayerById(id);
         return ResponseEntity.ok("Пользователь удалён успешно");
     }
+//    @DeleteMapping("/delete/all")
+//    public ResponseEntity<String> deleteAllUsers(){
+//        playerService.
+//    }
 
 }
 
