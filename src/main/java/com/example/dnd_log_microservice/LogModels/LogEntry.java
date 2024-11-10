@@ -21,6 +21,8 @@ public class LogEntry {
     private String level;
     private String message;
     private String serviceName;
+    private Long cardId;
+    private String CharacterName;
 
 
 }

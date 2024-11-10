@@ -1,10 +1,9 @@
 package com.example.dnd_log_microservice.Controllers;
 
 
-import com.example.dnd_log_microservice.LogModels.LogEntryDTO;
+import com.example.dnd_log_microservice.LogModels.LogEntryDTOForCard;
 import com.example.dnd_log_microservice.Services.LogService;
 import com.example.dnd_log_microservice.LogModels.LogEntry;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/logs")
+@RequestMapping("/logs")
 
 public class LogController {
     @Autowired
@@ -24,7 +23,7 @@ public class LogController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addLog(@RequestBody LogEntryDTO logEntryDTO) {
+    public ResponseEntity<String> addLog(@RequestBody LogEntryDTOForCard logEntryDTO) {
         try {
             LogEntry logEntry = logService.convertToLogEntry(logEntryDTO);
             logService.saveLog(logEntry);
