@@ -1,9 +1,7 @@
-package com.example.testproject.Models;
-
-import lombok.AllArgsConstructor;
+package com.example.testproject.DTO;
 
 
-public class PlayerNameDto {
+public class PlayerNameDTO {
     private String name;
     private String login;
     private String password;

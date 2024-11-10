@@ -2,7 +2,7 @@ package com.example.testproject.Services;
 
 import com.example.testproject.Models.Player;
 import com.example.testproject.Models.PlayerCard;
-import com.example.testproject.Models.PlayerNameDto;
+import com.example.testproject.DTO.PlayerNameDTO;
 import com.example.testproject.Repositories.PlayerCardRepository;
 import com.example.testproject.Repositories.PlayerRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static org.hibernate.internal.util.collections.CollectionHelper.map;
 
 @Service
 @Slf4j
@@ -68,7 +66,7 @@ private PlayerCardRepository playerCardRepository;
     }
 
     // Основной метод для добавления игрока
-    public void addPlayerByDTO(PlayerNameDto playerNameDto) {
+    public void addPlayerByDTO(PlayerNameDTO playerNameDto) {
         // Создание нового игрока
         Player player = new Player();
         player.setName(playerNameDto.getName());

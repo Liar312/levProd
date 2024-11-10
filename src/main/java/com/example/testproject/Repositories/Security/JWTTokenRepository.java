@@ -1,7 +1,5 @@
 package com.example.testproject.Repositories.Security;
 
-import com.example.testproject.Models.Player;
-import com.example.testproject.Models.PlayerNameDto;
 import com.example.testproject.Services.PlayerService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -10,11 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.parameters.P;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.DefaultCsrfToken;
@@ -25,7 +18,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.springframework.http.HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS;

@@ -1,9 +1,8 @@
 package com.example.testproject.Rest;
 
 import com.example.testproject.Models.Player;
-import com.example.testproject.Models.PlayerNameDto;
+import com.example.testproject.DTO.PlayerNameDTO;
 import com.example.testproject.Services.PlayerService;
-import com.mysql.cj.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,7 +23,7 @@ public class UserRestController {
         return playerService.getAll();
     }
     @PostMapping("/add/users")
-    public void addPlayer(@RequestBody PlayerNameDto playerNameDto){
+    public void addPlayer(@RequestBody PlayerNameDTO playerNameDto){
         if(playerService.getByLogin(playerNameDto.getLogin())==null) {
             playerService.addPlayerByDTO(playerNameDto);//работает
         }

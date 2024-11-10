@@ -1,4 +1,4 @@
-package com.example.testproject.Models;
+package com.example.testproject.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
