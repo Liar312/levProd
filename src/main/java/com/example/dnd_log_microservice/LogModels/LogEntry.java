@@ -1,28 +1,21 @@
 package com.example.dnd_log_microservice.LogModels;
 
-
-import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
-
-
-
-@Entity
-@Table(name="logs")
+@Table("logs") // Cassandra аннотация для определения таблицы
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class LogEntry {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @PrimaryKey // Cassandra аннотация для первичного ключа
     private String log_id;
     private String timestamp;
     private String level;
     private String message;
     private String serviceName;
     private Long cardId;
-    private String CharacterName;
-
-
+    private String characterName;
 }
