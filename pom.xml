@@ -94,6 +94,13 @@
             <artifactId>spring-data-cassandra</artifactId>
             <version>4.3.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.datastax.oss</groupId>
+            <artifactId>java-driver-core</artifactId>
+            <version>4.13.0</version> <!-- Use the appropriate version -->
+        </dependency>
+
+
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.cassandra/cassandra-all -->
