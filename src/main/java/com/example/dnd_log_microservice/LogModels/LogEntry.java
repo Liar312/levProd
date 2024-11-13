@@ -1,14 +1,10 @@
 package com.example.dnd_log_microservice.LogModels;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table("logs") // Cassandra аннотация для определения таблицы
+
+@Table(name="RedisCardLogs")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
