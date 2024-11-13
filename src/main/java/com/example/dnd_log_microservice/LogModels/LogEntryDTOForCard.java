@@ -8,7 +8,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 public class LogEntryDTOForCard {
     private String Message;
     private String TimeStamp;
@@ -17,4 +16,5 @@ public class LogEntryDTOForCard {
     private String characterName;
     private String CharacterClass;
     private String Race;
+    private String playerName;
 }

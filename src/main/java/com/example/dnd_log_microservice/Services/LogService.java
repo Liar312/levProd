@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -31,5 +32,8 @@ public class LogService {
         logEntry.setCharacterName(logEntryDTO.getCharacterName());
         logEntry.setCardId(logEntry.getCardId());
         return logEntry;
+    }
+    public List<LogEntry> getLogsByUsername(String username){
+        return logRepository.findAllByUsername(username);
     }
 }

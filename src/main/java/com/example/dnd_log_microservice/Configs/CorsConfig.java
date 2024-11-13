@@ -1,4 +1,4 @@
-package com.example.dnd_log_microservice;
+package com.example.dnd_log_microservice.Configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
